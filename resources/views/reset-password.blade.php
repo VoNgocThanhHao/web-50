@@ -111,9 +111,9 @@
                             showConfirmButton: false,
                             text: result.message,
                         })
-                        {{--setTimeout(function () {--}}
-                        {{--    window.location.href = "{{ action('App\Http\Controllers\usersController@getView') }}";--}}
-                        {{--}, 1200);--}}
+                        setTimeout(function () {
+                            window.location.href = "{{ action('App\Http\Controllers\usersController@getView') }}";
+                        }, 1200);
                     } else {
                         Swal.fire({
                             icon: 'error',
