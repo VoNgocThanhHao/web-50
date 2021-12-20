@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\orderModel;
+use App\Models\productModel;
 use App\Models\profileModel;
 use App\Models\ToolsModel;
 use App\Models\transactionModel;
@@ -14,11 +16,28 @@ class profileController extends Controller
 {
     public function getView($id){
 
+        $list = [];
+        $products = productModel::all();
+        foreach ($products as $index => $product){
+            $list[$index]['quantity'][] = orderModel::where('id_user',$id)->where('id_product',$product['id'])->sum('quantity');
+            $list[$index]['id'][] = $product['id'];
+        }
+
+        for($i = 0; $i < count($list)-1; $i++){
+            for ($j = $i+1; $j < count($list); $j++){
+                if ($list[$i]['quantity'] < $list[$j]['quantity']){
+                    $temp = $list[$i];
+                    $list[$i] = $list[$j];
+                    $list[$j] = $temp;
+                }
+            }
+        }
+
         $user = User::find($id);
 
         if (Auth::user()->id == $id || Auth::user()->permission == 2)
         {
-            return view('admin.profile',['user'=>$user]);
+            return view('admin.profile',['user'=>$user,'list'=>$list]);
         }
 
         return abort(404);

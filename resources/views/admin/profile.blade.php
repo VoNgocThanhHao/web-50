@@ -190,63 +190,25 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <strong><i class="fas fa-mug-hot mr-1"></i> Nước uống </strong>
 
-                            <p class="text-muted">
-                            <div class="row">
-                                <div class="col-md-12 col-lg-6 col-xl-5">
-                                    <div class="card mb-1 bg-gradient-dark">
-                                        <img class="profile-user-img img-fluid img-thumbnail"
-                                             src="{{ asset('images/avatars/tuyetnhi.jpg') }}"
-                                             alt="User profile picture">
+                            @for( $i =0; $i < 3; $i++)
+                                <p class="text-muted">
+                                <div class="row">
+                                    <div class="col-md-12 col-lg-6 col-xl-5">
+                                        <div class="card mb-1 bg-gradient-dark">
+                                            <img class="profile-user-img img-fluid img-thumbnail"
+                                                 src="{{ asset(\App\Models\productModel::find($list[$i]['id'])->toArray()[0]['image']) }}"
+                                                 alt="User profile picture">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-12 col-lg-6 col-xl-7">
+                                        <h6 class="">{{ \App\Models\productModel::find($list[$i]['id'])->toArray()[0]['name'] }}</h6>
                                     </div>
                                 </div>
+                                </p>
+                            @endfor
 
-                                <div class="col-md-12 col-lg-6 col-xl-7">
-                                    <h6 class="">Tên món bla bla bla bla</h6>
-                                </div>
-                            </div>
-                            </p>
-
-                            <hr>
-
-                            <strong><i class="fas fa-birthday-cake mr-1"></i> Bánh ngọt </strong>
-
-                            <p class="text-muted">
-                            <div class="row">
-                                <div class="col-md-12 col-lg-6 col-xl-5">
-                                    <div class="card mb-1 bg-gradient-dark">
-                                        <img class="profile-user-img img-fluid img-thumbnail"
-                                             src="{{ asset('images/avatars/tuyetnhi.jpg') }}"
-                                             alt="User profile picture">
-                                    </div>
-                                </div>
-
-                                <div class="col-md-12 col-lg-6 col-xl-7">
-                                    <h6 class="">Tên món bla bla bla bla</h6>
-                                </div>
-                            </div>
-                            </p>
-
-                            <hr>
-
-                            <strong><i class="fas fa-utensils mr-1"></i> Điểm tâm</strong>
-
-                            <p class="text-muted">
-                            <div class="row">
-                                <div class="col-md-12 col-lg-6 col-xl-5">
-                                    <div class="card mb-1 bg-gradient-dark">
-                                        <img class="profile-user-img img-fluid img-thumbnail"
-                                             src="{{ asset('images/avatars/tuyetnhi.jpg') }}"
-                                             alt="User profile picture">
-                                    </div>
-                                </div>
-
-                                <div class="col-md-12 col-lg-6 col-xl-7">
-                                    <h6 class="">Tên món bla bla bla bla</h6>
-                                </div>
-                            </div>
-                            </p>
 
                         </div>
                         <!-- /.card-body -->
