@@ -28,7 +28,7 @@
                                                     </div>
                                                     <div class="col-6 text-center">
                                                         <img
-                                                            src="{{ asset($product['image']) }}"
+                                                            src="{{ asset($product['image']).'?v='.time() }}"
                                                             alt="user-avatar"
                                                             class="img-circle img-fluid">
                                                     </div>

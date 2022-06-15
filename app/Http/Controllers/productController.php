@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\categoryModel;
 use App\Models\categoryParentModel;
+use App\Models\commentModel;
 use App\Models\imagesModel;
 use App\Models\productModel;
 use App\Models\ToolsModel;
@@ -20,6 +21,7 @@ class productController extends Controller
         foreach ($data as $index => $item) {
             $data[$index]["category"] = $item->category->sortBy('name');
         }
+
 
         return view('admin.products',['data'=>$data]);
     }
@@ -130,11 +132,19 @@ class productController extends Controller
 
         $data = categoryParentModel::all();
 
+
+        Carbon::setLocale('vi');
+        $now = Carbon::now();
+
+        $list_comment = commentModel::where('id_product',$id_product)->get()->sortByDesc('created_at');
+
         foreach ($data as $index => $item) {
             $data[$index]["category"] = $item->category->sortBy('name');
         }
 
-        return view('admin.details-product',['product'=>$product, 'data'=>$data , 'id_product'=>$id_product]);
+        return view('admin.details-product',['product'=>$product,
+            'data'=>$data , 'id_product'=>$id_product,'list_comment'=>$list_comment,
+            'now'=>$now,]);
     }
 
 

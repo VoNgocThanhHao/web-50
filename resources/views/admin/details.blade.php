@@ -64,7 +64,7 @@
                                                 </ul>
                                             </div>
                                             <div class="col-5 text-center">
-                                                <img src="{{ asset(''.$users[$index]->profile['image'].''  ) }}"
+                                                <img src="{{ asset($users[$index]->profile['image']).'?v='.time() }}"
                                                      alt="user-avatar"
                                                      class="img-circle img-fluid">
                                             </div>

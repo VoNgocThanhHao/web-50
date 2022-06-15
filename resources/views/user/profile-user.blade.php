@@ -61,7 +61,7 @@
                             <div class="text-center">
                                 <img class="profile-user-img img-fluid img-circle"
                                      id="image_preview_container"
-                                     src="{{ asset(''.$user->profile['image'].''  ) }}"
+                                     src="{{ asset($user->profile['image']).'?v='.time() }}"
 
 
                                      alt="User profile picture">
@@ -206,7 +206,7 @@
                                 <div class="col-md-12 col-lg-6 col-xl-5">
                                     <div class="card mb-1 bg-gradient-dark">
                                         <img class="profile-user-img img-fluid img-thumbnail"
-                                             src="{{ asset(\App\Models\productModel::find($list[$i]['id'])->toArray()[0]['image']) }}"
+                                             src="{{ asset(\App\Models\productModel::find($list[$i]['id'])->toArray()[0]['image']).'?v='.time() }}"
                                              alt="User profile picture">
                                     </div>
                                 </div>

@@ -54,7 +54,7 @@
     <nav class="main-header navbar navbar-expand-md navbar-light navbar-white fixed-top">
         <div class="container">
             <a href="{{ action('App\Http\Controllers\pageController@getView') }}" class="navbar-brand">
-                <img src="{{ asset('images/logo/logo_header.png') }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+                <img src="{{ asset('images/logo/logo_header.png').'?v='.time() }}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
                 <span class="brand-text font-weight-light">BROWNIE</span>
             </a>
 
@@ -102,7 +102,7 @@
                 <!-- User Dropdown Menu -->
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#" aria-expanded="false">
-                        <img alt="Avatar" class="table-avatar" src="{{ asset(Auth::user()->profile['image']) }}" style="height: 100%; border-radius: 50%">
+                        <img alt="Avatar" class="table-avatar" src="{{ asset(Auth::user()->profile['image']).'?v='.time() }}" style="height: 100%; border-radius: 50%">
                         {{ Auth::user()->profile['name'] }}
                         @if(!Auth::user()['email_verified_at'])
                         <span class="badge badge-danger navbar-badge">!</span>
@@ -403,7 +403,7 @@
         <div class="container py-4">
             <div class="row gy-4 gx-5">
                 <div class="col-lg-4 col-md-6 text-center">
-                    <img src="{{ asset('images/logo/logo_header.png') }}" alt="" style="height: 70px">
+                    <img src="{{ asset('images/logo/logo_header.png').'?v='.time() }}" alt="" style="height: 70px">
                     <h5 class="h1 text-black">BROWNIE</h5>
 
 {{--                                        <p class="small text-muted"> 88 Phạm Thái Bường Phường 4, Vĩnh Long, Việt Nam</p>--}}
@@ -590,6 +590,7 @@
             })
 
 
+            $(document).on('.keyup','.nameRegis', )
             $('.nameRegis').keyup(function (){
                 var _this = $(this);
 

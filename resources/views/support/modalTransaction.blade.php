@@ -47,7 +47,7 @@
                 <div class="col-md-12 col-lg-6 col-xl-3">
                     <div class="card mb-1 bg-gradient-dark product_img_info">
                         <img class="card-img-top"
-                             src="{{ asset($item->product['image']) }}">
+                             src="{{ asset($item->product['image']).'?v='.time() }}">
                         <span class="text_info_product">{{ $item->product['name'].' ('.$item['quantity'].')' }}</span>
                     </div>
 

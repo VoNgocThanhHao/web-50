@@ -32,12 +32,12 @@
                     <div class="col-12 col-sm-5">
                         <h3 class="d-inline-block d-sm-none">{{ $product['name'] }}</h3>
                         <div class="col-10 imageBox text-center">
-                            <img src="{{ asset($product['image']) }}" class="product-image imageMain" alt="Product Image" style="width: 100%; height: auto; ">
+                            <img src="{{ asset($product['image']).'?v='.time() }}" class="product-image imageMain" alt="Product Image" style="width: 100%; height: auto; ">
                         </div>
                         <div class="col-10 product-image-thumbs" id="list_image_sub_box">
-                            <div class="product-image-thumb active" _type="product_image" data="{{ $product['id'] }}"><img src="{{ asset($product['image']) }}" class="imageProduct" alt="Product Image"></div>
+                            <div class="product-image-thumb active" _type="product_image" data="{{ $product['id'] }}"><img src="{{ asset($product['image']).'?v='.time() }}" class="imageProduct" alt="Product Image"></div>
                             @foreach($product->images as $image)
-                                <div class="product-image-thumb" _type="sub_image" data="{{ $image['id'] }}"><img src="{{ asset($image['path']) }}" class="imageSub_{{$image['id']}}" alt="Product Image"></div>
+                                <div class="product-image-thumb" _type="sub_image" data="{{ $image['id'] }}"><img src="{{ asset($image['path']).'?v='.time() }}" class="imageSub_{{$image['id']}}" alt="Product Image"></div>
                             @endforeach
 
                         </div>
@@ -92,14 +92,6 @@
                 <div class="card direct-chat direct-chat-primary mt-5">
                     <div class="card-header ui-sortable-handle">
                         <h3 class="card-title mb-4">Nhận xét</h3>
-                        <form action="#" method="post">
-                            <div class="input-group">
-                                <input type="text" name="message" placeholder="Nhập bình luận ..." class="form-control messageComment">
-                                <span class="input-group-append">
-                      <button type="button" class="btn btn-primary btnSend">Gửi</button>
-                    </span>
-                            </div>
-                        </form>
 
                     </div>
                     <!-- /.card-header -->
@@ -117,7 +109,7 @@
                                     <span class="direct-chat-timestamp float-right">{{ $comment['created_at']->diffForHumans($now) }}</span>
                                 </div>
                                 <!-- /.direct-chat-infos -->
-                                <img class="direct-chat-img" src="{{ asset($comment->user->profile['image']) }}" alt="message user image">
+                                <img class="direct-chat-img" src="{{ asset($comment->user->profile['image']).'?v='.time() }}" alt="message user image">
                                 <!-- /.direct-chat-img -->
                                 <div class="direct-chat-text">
                                     {{ $comment['message'] }}
@@ -132,7 +124,7 @@
                                         <span class="direct-chat-timestamp float-right">{{ $comment['created_at']->diffForHumans($now) }}</span>
                                     </div>
                                     <!-- /.direct-chat-infos -->
-                                    <img class="direct-chat-img" src="{{ asset($comment->user->profile['image']) }}" alt="message user image">
+                                    <img class="direct-chat-img" src="{{ asset($comment->user->profile['image']).'?v='.time() }}" alt="message user image">
                                     <!-- /.direct-chat-img -->
                                     <div class="direct-chat-text bg-primary">
                                         {{ $comment['message'] }}

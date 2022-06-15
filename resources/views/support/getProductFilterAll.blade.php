@@ -10,7 +10,7 @@
                     </div>
                     <div class="col-6 text-center">
                         <img
-                            src="{{ asset($item['image']) }}"
+                            src="{{ asset($item['image']).'?v='.time() }}"
                             alt="user-avatar"
                             class="img-circle img-fluid">
                     </div>

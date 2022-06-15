@@ -8,7 +8,7 @@
                 <span class="direct-chat-timestamp float-right">{{ $comment['created_at']->diffForHumans($now) }}</span>
             </div>
             <!-- /.direct-chat-infos -->
-            <img class="direct-chat-img" src="{{ asset($comment->user->profile['image']) }}" alt="message user image">
+            <img class="direct-chat-img" src="{{ asset($comment->user->profile['image']).'?v='.time() }}" alt="message user image">
             <!-- /.direct-chat-img -->
             <div class="direct-chat-text">
                 {{ $comment['message'] }}
@@ -23,7 +23,7 @@
                 <span class="direct-chat-timestamp float-right">{{ $comment['created_at']->diffForHumans($now) }}</span>
             </div>
             <!-- /.direct-chat-infos -->
-            <img class="direct-chat-img" src="{{ asset($comment->user->profile['image']) }}" alt="message user image">
+            <img class="direct-chat-img" src="{{ asset($comment->user->profile['image']).'?v='.time() }}" alt="message user image">
             <!-- /.direct-chat-img -->
             <div class="direct-chat-text bg-primary">
                 {{ $comment['message'] }}

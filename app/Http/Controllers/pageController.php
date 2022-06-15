@@ -59,11 +59,12 @@ class pageController extends Controller
     }
 
     public function getViewProduct($id_product){
-        Carbon::setLocale('vi');
+
         $product = productModel::find($id_product);
 
         $data = categoryParentModel::all();
 
+        Carbon::setLocale('vi');
         $now = Carbon::now();
 
         $list_comment = commentModel::where('id_product',$id_product)->get()->sortByDesc('created_at');

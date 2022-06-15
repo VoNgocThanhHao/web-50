@@ -44,7 +44,7 @@
                     <div class="col-12 col-sm-6">
                         <h3 class="d-inline-block d-sm-none" >{{ $product['name'] }}</h3>
                         <div class="col-12 imageBox">
-                            <img src="{{ asset($product['image']) }}" class="product-image imageMain" alt="Product Image">
+                            <img src="{{ asset($product['image']).'?v='.time() }}" class="product-image imageMain" alt="Product Image">
                             <button type="button" class="btn btn-outline-secondary btn-xs btnUpdateImage">
                                 <i class="fas fa-pencil-alt mr-1"></i>Cập nhật ảnh
                             </button>
@@ -53,10 +53,10 @@
                             </button>
                         </div>
                         <div class="col-12 product-image-thumbs" id="list_image_sub_box">
-                            <div class="product-image-thumb active" _type="product_image" data="{{ $product['id'] }}"><img src="{{ asset($product['image']) }}" class="imageProduct" alt="Product Image"></div>
+                            <div class="product-image-thumb active" _type="product_image" data="{{ $product['id'] }}"><img src="{{ asset($product['image']).'?v='.time() }}" class="imageProduct" alt="Product Image"></div>
                             <input type="file" id="updateImage" hidden>
                             @foreach($product->images as $image)
-                            <div class="product-image-thumb" _type="sub_image" data="{{ $image['id'] }}"><img src="{{ asset($image['path']) }}" class="imageSub_{{$image['id']}}" alt="Product Image"></div>
+                            <div class="product-image-thumb" _type="sub_image" data="{{ $image['id'] }}"><img src="{{ asset($image['path']).'?v='.time() }}" class="imageSub_{{$image['id']}}" alt="Product Image"></div>
                             @endforeach
                             <button type="button" class="btn btn-primary btnAddImage" style="width: 60px">
                                 <i class="fas fa-plus"></i>
@@ -171,18 +171,85 @@
 
                     </div>
                 </div>
-                <div class="row mt-4">
-                    <nav class="w-100">
-                        <div class="nav nav-tabs" id="product-tab" role="tablist">
-                            <a class="nav-item nav-link active" id="product-comments-tab" data-toggle="tab" href="#product-comments" role="tab" aria-controls="product-comments" aria-selected="false">Comments</a>
-                        </div>
-                    </nav>
-                    <div class="tab-content p-3" id="nav-tabContent">
 
-                        <div class="tab-pane fade active show" id="product-comments" role="tabpanel" aria-labelledby="product-comments-tab"> Vivamus rhoncus nisl sed venenatis luctus. Sed condimentum risus ut tortor feugiat laoreet. Suspendisse potenti. Donec et finibus sem, ut commodo lectus. Cras eget neque dignissim, placerat orci interdum, venenatis odio. Nulla turpis elit, consequat eu eros ac, consectetur fringilla urna. Duis gravida ex pulvinar mauris ornare, eget porttitor enim vulputate. Mauris hendrerit, massa nec aliquam cursus, ex elit euismod lorem, vehicula rhoncus nisl dui sit amet eros. Nulla turpis lorem, dignissim a sapien eget, ultrices venenatis dolor. Curabitur vel turpis at magna elementum hendrerit vel id dui. Curabitur a ex ullamcorper, ornare velit vel, tincidunt ipsum. </div>
+
+
+
+                <div class="card direct-chat direct-chat-primary mt-5">
+                    <div class="card-header ui-sortable-handle">
+                        <h3 class="card-title mb-4">Nhận xét</h3>
+                        <form action="#" method="post">
+                            <div class="input-group">
+                                <input type="text" name="message" placeholder="Nhập bình luận ..." class="form-control messageComment">
+                                <span class="input-group-append">
+                      <button type="button" class="btn btn-primary btnSend">Gửi</button>
+                    </span>
+                            </div>
+                        </form>
 
                     </div>
+                    <!-- /.card-header -->
+                    <div class="card-body" style="display: block;">
+                        <!-- Conversations are loaded here -->
+                        <div class="direct-chat-messages"  style="height: auto" id="boxComment">
+
+                        @foreach($list_comment as $comment)
+
+                            @if($comment->user['id'] != Auth::user()['id'])
+                                <!-- Message. Default to the left -->
+                                    <div class="direct-chat-msg">
+                                        <div class="direct-chat-infos clearfix">
+                                            <span class="direct-chat-name float-left">{{ $comment->user->profile['name'] }}</span>
+                                            <span class="direct-chat-timestamp float-right">{{ $comment['created_at']->diffForHumans($now) }}</span>
+                                        </div>
+                                        <!-- /.direct-chat-infos -->
+                                        <img class="direct-chat-img" src="{{ asset($comment->user->profile['image']).'?v='.time() }}" alt="message user image">
+                                        <!-- /.direct-chat-img -->
+                                        <div class="direct-chat-text">
+                                            {{ $comment['message'] }}
+                                        </div>
+                                        <!-- /.direct-chat-text -->
+
+                                    </div>
+                                @else
+                                    <div class="direct-chat-msg">
+                                        <div class="direct-chat-infos clearfix">
+                                            <span class="direct-chat-name float-left">{{ $comment->user->profile['name'] }}</span>
+                                            <span class="direct-chat-timestamp float-right">{{ $comment['created_at']->diffForHumans($now) }}</span>
+                                        </div>
+                                        <!-- /.direct-chat-infos -->
+                                        <img class="direct-chat-img" src="{{ asset($comment->user->profile['image']).'?v='.time() }}" alt="message user image">
+                                        <!-- /.direct-chat-img -->
+                                        <div class="direct-chat-text bg-primary">
+                                            {{ $comment['message'] }}
+                                        </div>
+                                        <!-- /.direct-chat-text -->
+                                    </div>
+                                    <!-- /.direct-chat-msg -->
+                                @endif
+
+
+                                <hr>
+                            @endforeach
+
+
+
+
+                        </div>
+                    </div>
+
+                    <!-- /.card-body -->
+                {{--                    <div class="card-footer" style="display: block;">--}}
+
+                {{--                    </div>--}}
+                <!-- /.card-footer-->
                 </div>
+
+
+
+
+
+
             </div>
             <!-- /.card-body -->
         </div>
